@@ -11,9 +11,7 @@ app.use(express.json());
 
 app.use(
   "/uploads",
-  express.static(
-    path.join(__dirname, "uploads")
-  )
+  express.static(path.join(__dirname, "uploads"))
 );
 
 const makananRoutes = require("./routes/makananRoutes");
@@ -28,8 +26,13 @@ app.use("/api/riwayat", riwayatRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/ulasan", ulasanRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(
-    `Server berjalan di port ${process.env.PORT}`
-  );
+// Route test
+app.get("/", (req, res) => {
+  res.send("Cari Makan API Running 🚀");
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server berjalan di port ${PORT}`);
 });
